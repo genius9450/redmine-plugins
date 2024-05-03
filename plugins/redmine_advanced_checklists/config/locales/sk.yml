@@ -1,0 +1,5 @@
+sk:
+  label_checklist_plural: Checklist
+  permission_view_checklists: Zobraziť checklist
+  permission_done_checklists: Splnené checklist položky
+  permission_edit_checklists: Upraviť checklist položky

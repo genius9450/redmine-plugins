@@ -1,0 +1,11 @@
+cs:
+  issues_tree:
+    tree_view: Stromový pohled
+    expand_current_nodes: Rozbalit další úroveň
+    collapse_all: Sbalit vše
+    back_to_plain_list: Běžný výpis
+    errors:
+      unable_to_group_in_tree_view: Nelze seskupit do stromového pohledu
+    settings:
+      default_redirect_to_tree_view: "Nastavte stromový pohled jako výchozí indexovou stránku pro úkoly (to může být velmi pomalé v případě projektu s více než 1000 úkoly)"
+      default_redirect_to_tree_view_without_project: "Nastavte stromový pohled jako výchozí indexovou stránku pro úkoly bez rozlišení projektu (to může být velmi pomalé v případě projektu s více než 1000 úkoly)"

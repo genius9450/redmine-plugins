@@ -1,0 +1,15 @@
+pl:
+  label_checklist_plural: Lista
+  permission_view_checklists: Zobacz listę
+  permission_done_checklists: Ustaw jako ukończone elementy checklisty
+  permission_edit_checklists: Edytuj elementy checklisty
+  label_checklist_template_category_plural: Kategorie szablonów
+  label_checklist_template_category_new: Nowa kategoria
+  label_checklist_templates: Szablony checklist
+  label_checklist_new_checklist_template: New checklist template
+  field_template_items: Elementy szablonu
+  label_checklist_template: Szablon checklisty
+  label_add_checklists_from_template: Dodaj z szablonu
+  label_checklist_import_hint: 'Dozwolone wiele wartości (po jednej linii dla każdej wartości)'
+  label_checklist_item: Element checklisty
+  label_assign_to_me: Przypisz do mnie

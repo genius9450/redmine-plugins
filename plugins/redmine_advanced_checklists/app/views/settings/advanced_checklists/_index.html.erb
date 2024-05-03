@@ -1,0 +1,6 @@
+<%= stylesheet_link_tag 'root', plugin: 'redmine_advanced_checklists' %>
+
+<%= render_tabs [
+    {:name => 'general', :partial => 'settings/advanced_checklists/general', :label => :label_general},
+    {:name => 'checklist_templates', :partial => 'settings/advanced_checklists/checklist_templates', :label => :label_checklist_templates}
+  ] %>

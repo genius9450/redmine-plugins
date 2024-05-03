@@ -1,0 +1,182 @@
+/* prefix selector with body.controller-issues.action-show  to avoid unwanted style on other page ? */
+
+body.controller-issues.action-show div.issue.details .value, body.controller-issues.action-show div.issue.details .attributes .attribute .value {
+	overflow: visible;
+	position: relative;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+}
+
+body.controller-issues.action-show .issue.details div.description,
+body.controller-issues.action-show .issue.details div.subject {
+	position: relative;
+}
+
+body.controller-issues.action-show .issue.details.no-cursor .value {
+	cursor: initial;
+}
+
+body.controller-issues.action-show .attribute .error {
+	color: #e74c3c;
+	margin-left: 3px;
+}
+
+body.controller-issues.action-show div.issue.details div.subject {
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+body.controller-issues.action-show div.issue.details div.subject .refreshData {
+	cursor: pointer;
+}
+
+body.controller-issues.action-show div.issue.details .splitcontent {
+	overflow: initial;
+}
+
+body.controller-issues.action-show div.issue.details .iconEdit {
+	opacity: 0;
+	display: inline-block;
+	transition: opacity .3s ease-in;
+	font-weight: 700;
+	margin-left: 1ch;
+}
+
+body.controller-issues.action-show div.issue.details.showPencil .iconEdit,
+body.controller-issues.action-show div.issue.details .attribute:hover .iconEdit,
+body.controller-issues.action-show div.issue.details .description:hover .iconEdit,
+body.controller-issues.action-show div.issue.details div.subject:hover .iconEdit {
+	opacity: 1;
+}
+
+body.controller-issues.action-show .dynamicEditField {
+	display: inline-block;
+	position:absolute;
+	opacity: 0;
+	transition: opacity .3s ease-in;
+	/* left:0; correct position on top of icon */
+	bottom: 100%;
+	margin-bottom: 5px;
+	box-sizing: border-box;
+	padding: 10px;
+	border-radius: 3px;
+	background: white;
+	pointer-events: none;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	width: auto;
+	white-space: nowrap; /* force icons to stay on the same line */
+}
+
+body.controller-issues.action-show .subject .dynamicEditField {
+	bottom: initial;
+	top:100%;
+}
+
+body.controller-issues.action-show .dynamicEditField.open {
+	opacity: 1;
+	z-index: 999;
+	pointer-events: auto;
+	resize: horizontal;
+	overflow: auto;
+}
+
+body.controller-issues.action-show #TitleInput.dynamicEditField {
+	font-size: 0.57em;
+}
+
+body.controller-issues.action-show .dynamicEditField button.action {
+	margin-left: .5em;
+	cursor: pointer;
+	border: 0;
+	background-color: #efefef;
+	line-height: 0;
+}
+
+body.controller-issues.action-show .dynamicEditField button.action.valid {
+	font-weight: 700;
+	background-color: #27ae60;
+	color: white;
+}
+
+
+body.controller-issues.action-show .dynamicEditField select {
+	background-image:none;
+    background-color:transparent;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    font-size: inherit;
+    font-family: inherit;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	width: auto;
+}
+
+body.controller-issues.action-show .dynamicEditField select[multiple="multiple"] {
+	display: block;
+	width:  100%;
+}
+
+body.controller-issues.action-show .dynamicEditField select option[disabled="disabled"] {
+    display:none;
+}
+
+body.controller-issues.action-show div.issue div.subject h3 {
+	position:relative;
+	display: inline-block;
+	cursor: pointer;
+}
+
+body.controller-issues.action-show .dynamicEditField input[type="text"] {
+	width: auto !important;
+}
+
+body.controller-issues.action-show .dynamicEditField textarea {
+	width: 100%;
+	display: block;
+	margin-bottom: 10px;
+}
+
+body.controller-issues.action-show .dynamicEditField input,
+body.controller-issues.action-show .dynamicEditField select {
+	vertical-align: middle;
+}
+
+body.controller-issues.action-show .dynamicEditField .check_box_group {
+	border: 0px !important;
+	margin-bottom: 10px;
+	width:100%;
+}
+
+/* MOBILE MEDIAQUERY */
+@media screen and (max-width: 899px){
+
+	body.controller-issues.action-show div.issue.details div.subject {
+		display: block;
+	}
+
+	body.controller-issues.action-show div.issue.details div.subject .refreshData {
+		display: none;
+	}
+
+	body.controller-issues.action-show div.issue.details .value, body.controller-issues.action-show div.issue.details .attributes .attribute .value {
+		display: block;
+	}
+
+	body.controller-issues.action-show .dynamicEditField {
+		display: block;
+		position: relative;
+		margin: 10px 0;
+		white-space: normal;
+		height: 0;
+		overflow: hidden;
+		padding: 0;
+	}
+
+	body.controller-issues.action-show .dynamicEditField.open {
+		height: auto;
+		padding: 10px;
+	}
+}

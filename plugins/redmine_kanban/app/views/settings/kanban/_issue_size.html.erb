@@ -1,0 +1,47 @@
+<div class="contextual">
+  <%= link_to(l(:button_create), kanban_issue_size_create_path, class: 'icon icon-add') %>
+</div>
+
+<% @sizes = KanbanIssueSize.get_all_ordered %>
+
+<% if @sizes.count == 0 %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% else %>
+  <table class="list kanban_issue_sizes">
+    <thead>
+    <tr>
+      <th><%= l(:field_name) %></th>
+      <th>&nbsp</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% for size in @sizes %>
+        <tr class="<%= cycle('odd', 'even') %>">
+          <td>
+            <%= size.name %>
+          </td>
+          <td class="buttons">
+            <%= reorder_handle(size,
+                               url: kanban_issue_size_sort_order_path(id: size.id),
+                               param: 'order') %>
+            <%= link_to(l(:button_edit),
+                        kanban_issue_size_edit_path(id: size.id),
+                        class: 'icon icon-edit',
+                        accesskey: accesskey(:edit)) %>
+            <%= link_to(l(:button_delete),
+                        kanban_issue_size_delete_path(id: size.id),
+                        confirm: l(:text_are_you_sure),
+                        method: :delete,
+                        class: 'icon icon-del') %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<%= javascript_tag do %>
+  $(function() {
+    $('table.kanban_issue_sizes tbody').positionedItems();
+  });
+<% end %>

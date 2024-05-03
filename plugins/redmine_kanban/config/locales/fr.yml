@@ -1,0 +1,37 @@
+# French strings go here for Rails i18n
+fr:
+  project_module_kanban: Tableaux Agile
+  label_my_boards: Mes tableaux Agiles
+  label_swimlanes: Lignes
+  label_default_board: Tableau par défaut
+  permission_save_queries_kanban: Enregistrement des tableaux
+
+  label_kanban: Tableaux
+
+  label_issue_blocked_at: 'Date de verrouillage'
+  field_blocked_at: 'Date de verrouillage'
+  kanban_rejected_status: "Statut non résolu"
+
+  error_question_not_assignable: 'auteur "%{name}" ne peut pas être affecté à cette tâche'
+
+  permission_manage_public_boards_kanban: "Édition publique"
+  permission_view_kanban: "Projection"
+  error_no_privileges: "Pas la permission"
+
+  label_my_kanban_queries: 'Mes planches'
+  label_kanban_query_plural: 'Conseil général'
+
+  invalid_action_attribute: "Paramètre d’action non valide"
+  label_show_in_top_menu: 'Afficher dans le menu supérieur'
+  label_show_in_app_menu: 'Afficher dans le menu de l’application'
+
+# for show in system history
+  journal_block_deleted: 'Verrouiller'
+  journal_block_added: 'Verrouillage est réglé'
+
+  field_block_reason: Verrouillé
+  label_assign_to_me: M'assigner
+
+  # frontend
+  errors.statusChangeError: Impossible de modifier les statuts des demandes
+  label_fullscreen: Plein écran

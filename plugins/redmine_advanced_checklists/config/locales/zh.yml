@@ -1,0 +1,15 @@
+zh:
+  label_checklist_plural: 检查列表
+  permission_view_checklists: 查看检查列表
+  permission_done_checklists: 完成检查项
+  permission_edit_checklists: 编辑检查项
+  label_checklist_template_category_plural: 模板类别
+  label_checklist_template_category_new: 新类别
+  label_checklist_templates: 检查列表模板
+  label_checklist_new_checklist_template: 新检查列表模板
+  field_template_items: 模板项
+  label_checklist_template: 检查列表模板
+  label_add_checklists_from_template: 从模板新建
+  label_checklist_import_hint: '允许多重值 (每一行的值)'
+  label_checklist_item: 检查列表项
+  label_assign_to_me: 指派给我

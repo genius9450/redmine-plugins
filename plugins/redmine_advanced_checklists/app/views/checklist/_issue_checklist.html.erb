@@ -1,0 +1,20 @@
+<% if @issue.project.module_enabled?('advanced_checklists') %>
+	<hr>
+	<div id="checklists" init_issues="<%= @issues.to_json %>"><span>loading checklists...</span></div>
+
+	<script>
+		window.issue = '<%= @issue.id %>'
+		window.checklists_settings = '{'
+			+ '"question_lists_can_add": "<%= @issue.can_add_checklist? %>", '
+		  + '"flag_not_all_assigned": "<%= AdvancedChecklistSettings.is_all_should_be_assigned? %>"'
+		  + '}';
+	</script>
+
+	<%= render :partial => 'checklist/settings' %>
+
+		<%= javascript_include_tag 'checklists.js', plugin: 'redmine_advanced_checklists', :type => 'module' %>
+		<%# content_for :header_tags do %>
+			<%#= stylesheet_link_tag 'main', plugin: 'redmine_advanced_checklists' %>
+			<%#= stylesheet_link_tag 'checklists', plugin: 'redmine_advanced_checklists' %>
+		<%# end %>
+<% end %>

@@ -1,0 +1,11 @@
+it:
+  project_module_kanban: Tabelle Agile
+  label_my_boards: Le mie tabelle Agile
+  label_swimlanes: Swimlanes
+  label_default_board: Tabella di default
+  permission_save_queries_kanban: Salvataggio delle tabelle
+  field_block_reason: Bloccato
+  errors.statusChangeError: Lo stato della segnalazione non può essere cambiato
+  label_fullscreen: Full screen
+  label_kanban_board_columns_options: Colonne della tabella
+  hint_kanban_wip_limit: Limite Work-in-progress

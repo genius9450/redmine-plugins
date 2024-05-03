@@ -1,0 +1,11 @@
+<div id="checklist-templates">Loading...</div>
+
+<%= render :partial => 'checklist/settings' %>
+
+	<%= javascript_include_tag 'checklist_templates.js', plugin: 'redmine_advanced_checklists', :type => 'module' %>
+	<% content_for :header_tags do %>
+		<%= stylesheet_link_tag 'main', plugin: 'redmine_advanced_checklists' %>
+		<%= stylesheet_link_tag 'checklist_templates', plugin: 'redmine_advanced_checklists' %>
+	<% end %>
+
+<%= l(:hint_edit_templates, {:permission_manage_global_checklist_templates => l(:permission_manage_global_checklist_templates), :permission_manage_project_checklist_templates=> l(:permission_manage_project_checklist_templates)}).html_safe %>

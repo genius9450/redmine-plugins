@@ -1,0 +1,260 @@
+<% data_collector = KanbanIssueBlockHistoryCollector.new(@issue) %>
+<% block_durations = data_collector.durations %>
+<% if @issue.block_reason.present? %>
+<%
+  blocked_at = @issue.real_blocked_at
+  block_reason = content_tag(:span, @issue.block_reason, class: 'rkteam-block-reason-text')
+  if blocked_at.present?
+    block_reason += content_tag(:span, "&nbsp;#{time_tag(blocked_at)}".html_safe, class: 'rkteam-block-reason-current-duration')
+  end
+  if block_durations[:total].present? and block_durations[:total] > block_durations[:current]
+    block_reason += content_tag(:span, "&nbsp;(#{l(:label_total)} &ndash; #{distance_of_time_in_words(block_durations[:total])})".html_safe, class: 'rkteam-block-reason-total-duration')
+  end
+%>
+<% end %>
+<div id="issue-blocked-reason">
+  <div class="attribute">
+    <span class="label" title="<%= l(:hint_block_reason) %>">
+      <%= link_to(l(:label_board_locked), kanban_journal_details_block_history_path()) %>
+    </span>
+    <div id="block-reason-data"><%= block_reason %></div>
+  </div>
+</div>
+
+<script>
+const TOKEN = $("meta[name=csrf-token]").attr('content');
+const API_KEY = '<%= User.current.api_key %>';
+const PAGE_URL = '/kanban/issue/<%= @issue.id %>';
+
+const updated_on = '<%= @issue.updated_on.utc.iso8601 %>';
+const issue_id = <%= @issue.id %>;
+
+$(function () {
+  <% if !KanbanSettings.is_redmineup_agile_installed? %>
+  var status_label = $('.status.attribute .label')
+  if (status_label) {
+    status_label.html('<a href="' + window.location.origin + window.location.pathname + '/status">' + status_label.html() + '</a>');
+  }
+  <% end %>
+  const isBlocked = <% if @issue.block_reason.present? %>true<% else %>false<% end %>;
+
+  if (isBlocked) {
+    handleRenderUnblockPopup();
+  } else {
+    handleRenderBlockLink();
+  }
+});
+
+function handleRenderUnblockPopup() {
+  const renderContainer = $('#issue-blocked-reason').find('.attribute:eq(0) #block-reason-data');
+  const actionName = '<%= l(:field_remove_block) %>';
+
+  renderContainer.addClass('issue-block-container');
+  renderContainer.append(`<div class="issue-remove-block"><a href="">${actionName}</a></div>`);
+
+  $('.issue-remove-block a').on('click', handleRemoveBlock)
+}
+
+function handleRenderBlockLink() {
+  const renderContainer = $('#issue-blocked-reason').find('.attribute:eq(0) #block-reason-data');
+  const actionName = '<%= l(:field_block_reason) %>';
+  const renderElem = `
+    <div class="issue-add-block">
+      <a href="" class="issue-add-block-show">${actionName}</a>
+      <div class="issue-add-block-field" style="display: none;">
+        <form class="block-reason-form" onsubmit="event.preventDefault(); return false;">
+          <input name="block-reason-input">
+        </form>
+        <div class="issue-add-block-field-actions">
+          <a href="" class="block-reason-save"><%= l(:button_save) %></a>
+          <a href="" class="block-reason-cancel"><%= l(:button_cancel) %></a>
+        </div>
+      </div>
+    </div>
+  `;
+  renderContainer.append(renderElem);
+
+  initBlockEvents();
+}
+
+function initBlockEvents() {
+  $('.issue-add-block-show').on('click', function(e) {
+    e.preventDefault();
+    $(this).hide();
+    $('.issue-add-block-field').show();
+  });
+
+  $('.block-reason-cancel').on('click', function(e) {
+    e.preventDefault();
+    $('.issue-add-block-field').hide();
+    $('.issue-add-block-show').show();
+  });
+
+  $('.block-reason-save').on('click', function(e) {
+    e.preventDefault();
+
+    const blockReasonValue = $('input[name="block-reason-input"]').val();
+
+    if (!blockReasonValue) return;
+
+    handleAddBlock(blockReasonValue);
+  });
+
+  $('input[name="block-reason-input"]').on('keypress', function(e) {
+    if (e.key.toLowerCase() === 'enter' || e.keyCode === 13) handleAddBlock($(this).val());
+  });
+}
+
+function handleAddBlock(block_reason) {  
+  const data = {
+    issue_id,
+    updated_on,
+    block_reason,
+  };
+  
+  handleFetchBlock(data);
+}
+
+function handleRemoveBlock(event) {
+  event.preventDefault();
+  
+  const data = {
+    issue_id,
+    updated_on,
+    block_reason: '',
+  };
+  
+  handleFetchBlock(data);
+}
+
+function handleFetchBlock(data) {
+  fetch(PAGE_URL, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+      'X-Csrf-Token': TOKEN,
+      'X-Redmine-Api-Key': API_KEY,
+    },
+    body: JSON.stringify({data, updated_on})
+  })
+  .then((result) => {
+    if (result.ok) {
+      updateIssue();
+    } else {
+      // handle errors
+      return result.json();
+    }
+  })
+  .then((json) => {
+    showErrors(json.errors);
+  })
+  .catch((err) => {
+    console.log('error :>> ', err);
+  });
+}
+
+function showErrors(errors) {
+  const $popup = $('<div class="issue-block-popup-error"><ul></ul></div>');
+
+  errors.forEach((err) => {
+    $popup.find('ul').append(`<li>${err}</li>`);
+  });
+
+  $('body').append($popup);
+  $popup.fadeIn(300);
+
+  setTimeout(() => {
+    $popup.fadeOut(300, function() {
+      $popup.remove();
+    });
+  }, 3000);
+}
+
+function updateIssue() {
+  window.location.reload();
+}
+</script>
+
+<style>
+#issue-blocked-reason {
+  position: relative;
+}
+
+.issue-block-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.issue-remove-block {
+  position: absolute;
+  display: inline-block;
+  width: auto;
+  box-sizing: border-box;
+  padding-left: 20px;
+  font-size: 12px;
+  white-space: nowrap;
+  border-radius: 3px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.issue-block-container:hover .issue-remove-block {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.issue-add-block-show {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#issue-blocked-reason:hover #block-reason-data .issue-add-block-show,
+#issue-blocked-reason #block-reason-data:hover .issue-add-block-show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.issue-add-block-field-actions {
+  margin-top: 4px;
+  font-size: 12px !important;
+}
+
+a.block-reason-cancel {
+  margin-left: 8px;
+  color: #555555;
+}
+
+.rkteam-block-reason-text {
+  color: red;
+}
+
+.rkteam-block-reason-total-duration,
+.rkteam-block-reason-current-duration {
+}
+
+.issue-block-popup-error {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  display: none;
+  padding: 16px 16px;
+  background-color: #ed3c3c;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 4px 8px -4px rgba(0, 0, 0, 0.2);
+  transform: translateX(-50%);
+}
+
+.issue-block-popup-error ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.issue-block-popup-error ul li {
+  padding: 4px 0;
+  font-size: 12px;
+  color: white;
+}
+</style>

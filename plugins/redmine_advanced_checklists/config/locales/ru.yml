@@ -1,0 +1,104 @@
+# Russian strings go here for Rails i18n
+ru:
+  project_module_advanced_checklists: 'Чек-листы'
+  #settings_tab_label_checklist_templates: "Чек-листы"
+  label_checklist_plural: "Чек-листы"
+  label_checklist: "Чек-лист"
+  label_advanced_checklists: "Продвинутые чек-листы"
+  label_personal_checklist_plural: "Визы"
+  label_personal_checklist: "Виза"
+
+  error_question_not_assignable: 'Исполнитель "%{name}" не может быть назначен для этой задачи'
+
+  permission_manage_global_checklist_templates: 'Редактирование общих шаблонов'
+  permission_manage_project_checklist_templates: 'Редактирование шаблонов проекта'
+  permission_manage_global_assigned_checklist_templates: 'Редактирование общих шаблонов "виз"'
+  permission_manage_project_assigned_checklist_templates: 'Редактирование шаблонов "виз" проекта'
+  permission_manage_any_checklist_assigned: 'Редактирование любых "виз"'
+  permission_view_view_advanced_checklists: 'Просмотр чек-листов'
+  error_no_privileges: "Недостаточно прав"
+
+  invalid_action_attribute: "Invalid action parameter"
+  label_checklist_item: "Пункт чек-листа"
+
+  # for show in checklist history
+  history_checklist_item_add_attach: 'добавил(a) файл <strong>"%{value}"</strong> с описанием <strong>"%{descr}"</strong>'
+  history_checklist_item_create: 'создал(a) %{value} и назначил на %{assigned_to}'
+  history_checklist_item_done: 'отметил(a) <s><b>выполненным</b></s>'
+  history_checklist_item_undone: 'отметил(a) <b>невыполненным</b>'
+  history_checklist_item_deleted: 'Чекитем с ID <strong>%{id}</strong> удален'
+  history_checklist_item_answer: 'Ответил(a) %{value}'
+  history_checklist_item_answer_created: 'Ответил(a) %{value} на %{item}'
+  history_checklist_item_answer_content: 'Ответ изменён %{value} на %{item}'
+  history_checklist_item_answer_deleted: 'Ответ удалён %{value} на %{item}'
+  history_checklist_item_answer_deleted_no_item: 'Ответ удалён %{value}'
+
+
+  history_attach_renamed: 'переименовал(a) вложение на <strong>"%{value}"</strong> с <strong>"%{old_value}"</strong>'
+  history_attach_description_changed: 'изменил(a) описание на <strong>"%{value}"</strong> с <strong>"%{old_value}"</strong>'
+  history_attach_delete: 'удалил(a) вложение <strong>"%{old_value}"</strong>'
+
+  # frontend
+  showIsDone: 'Показать отмеченные'
+  hideIsDone: 'Скрыть отмеченные'
+  label_completed_by: 'Отметил(а)'
+  addDeadline: 'Назначить срок'
+  editDeadline: 'Изменить срок'
+  removeDeadline: 'Удалить срок'
+  addResponsible: 'Назначить >'
+  copyText: 'Копировать текст'
+  editComment: 'Изменить ответ'
+  removeComment: 'Удалить ответ'
+  removeAssignee: 'Удалить ответственного'
+  button_save_as_template: 'Сохранить чеклист в шаблон'
+  areYouSureToAddTemplate: 'Вы уверены что хотите добавить шаблон'
+  createTemplate: 'Новый шаблон'
+  autoInstallTemplate: 'Автоматический устанавливать шаблон'
+  noTemplateCreated: 'Нет доступных шаблонов'
+  bindTemplateToProject: 'Привязать шаблон к проекту'
+  # errors
+  errors_createVisaTemplateTaskError: 'Для шаблона типа Виза все поля должны быть заполнены'
+  errors_error: 'Ошибка'
+  errors_defaultError: 'Что-то пошло не так! Обновите страницу'
+  errors_checklistItemAlreadyAssigned: 'Пункт(ы) чек-листа уже назначен на этого пользователя'
+  errors_unknown_list_type: 'Неизвестный тип чеклиста'
+
+  label_success: 'Успешно'
+  answer_from: 'Ответил(а)'
+
+  label_new_personal_checklist: 'Новая Виза'
+  label_new_checklist: 'Новый чек-лист'
+
+  permission_view_checklists: Просмотр
+  permission_done_checklists: Выполнять чеклисты
+  permission_edit_checklists: Редактирование
+  label_checklist_template_category_plural: Категории шаблонов чеклистов
+  label_checklist_template_category_new: Новая категория шаблонов чеклистов
+  label_checklist_templates: Шаблоны чеклистов
+  label_checklist_template: Шаблон чеклистов
+  label_checklist_new_checklist_template: Новый шаблон чеклистов
+  field_template_items: Элементы шаблона
+  label_add_checklists_from_template: Добавить из шаблона
+  label_checklists_from_template: Из шаблона
+  label_checklist_import_hint: 'Для ввода нескольких значений вводите по одному на строку'
+  label_checklists_must_be_completed: Чтобы закрыть задачу, должны быть выполнены все пункты чеклистов
+  label_checklists_should_be_assigned: Все пункты чек-листов должны быть назначены
+  label_respect_checklist_assigners_in_filter: Учитывать назначеные чек листы в фильтре по назначенным
+  label_view_all: 'Смотреть все'
+  label_save_assigned: 'Сохранить назначенных исполнителей'
+  select_file: 'Выбрать файл'
+  label_checklist_item_plural: 'Итемы'
+  field_checklist: 'Чек-лист'
+  label_checklist_assigned_to: 'элемент назначен'
+  label_checklist_done: 'элемент выполнен'
+  label_checklist_assignees: 'Назначенные в чек-листах'
+
+  hint_edit_templates: "Подсказка: для того чтобы редактировать общие шаблоны у вашей роли должны быть права <b>%{permission_manage_global_checklist_templates}</b> или <b>%{permission_manage_project_checklist_templates}</b>"
+  hint_visa_item_should_be_assigned: 'Подсказка: для сохранения пункта визы необходимо назначить исполнителя'
+
+  label_advanced_checklist_plural: "Чеклисты"
+  button_share_checklist_item: "Копировать ссылку"
+
+  #Free
+  message_disabled_create_more_one: "Вы не можете создать более одного чек-листа в бесплатной версии"
+  message_available_in_pro_version: "Доступно в pro версии"

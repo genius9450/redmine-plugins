@@ -1,0 +1,7 @@
+ko:
+  project_module_kanban: "애자일 보드"
+  label_my_boards: "내 애자일 보드"
+  permission_manage_public_boards_kanban: "공용 애자일 보드 관리"
+  field_block_reason: 잠금
+  errors.statusChangeError: "일감 상태를 변경할 수 없습니다."
+  label_fullscreen: "전체 화면"

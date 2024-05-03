@@ -1,0 +1,247 @@
+<%
+if content_for(:header_tags).present? &&
+    content_for(:header_tags).include?('/jstoolbar/') &&
+    (@project.nil? || @project.identifier.blank? ||
+     User.current.allowed_to?(:use_visual_editor, @project))
+  content_for :header_tags do %>
+    <%= javascript_include_tag('tinymce/tinymce.min.js', plugin: 'redmine_wysiwyg_editor') %>
+    <%
+    formatting = Setting.text_formatting
+    if formatting == 'textile' %>
+      <%= javascript_include_tag('to-textile.min.js', plugin: 'redmine_wysiwyg_editor') %>
+    <% elsif formatting == 'markdown'|| formatting == 'common_mark' %>
+      <%= javascript_include_tag('turndown.js', plugin: 'redmine_wysiwyg_editor') %>
+      <%= javascript_include_tag('turndown-plugin-gfm.js', plugin: 'redmine_wysiwyg_editor') %>
+    <% end %>
+    <%= javascript_include_tag('RedmineFormatPlugin.js', plugin: 'redmine_wysiwyg_editor') %>
+    <%= javascript_include_tag('redmine_wysiwyg_editor.js', plugin: 'redmine_wysiwyg_editor') %>
+    <%= stylesheet_link_tag('redmine_wysiwyg_editor.css', plugin: 'redmine_wysiwyg_editor') %>
+    <%
+    t = @issue || @page || @news || @document || @topic || nil
+    attachments = t ? t.attachments.map {|a| {id: a.id, name: a.filename} } : []
+    %>
+    <% html_tag_allowed = textilizable('<div></div>').include?('<div></div>') %>
+    <style type="text/css">
+.jstTabs,
+.jstElements,
+.jstEditor {
+  /* To avoid flickering of the original editor. */
+  visibility: hidden;
+}
+
+#content .jstBlock .jstTabs.tabs {
+  width: 100%;
+}
+
+#content .jstBlock .jstTabs ul {
+  height: auto;
+}
+
+#content .jstBlock .jstTabs li {
+  height: auto;
+  margin: 0;
+}
+
+#content .jstBlock .jstTabs .jstElements {
+  height: auto;
+}
+    </style>
+    <script>
+class RedmineWysiwygEditorManager {
+  editors = [];
+
+  update() {
+    this.editors = $('.jstEditor').map((index, element) => {
+      return this.find(element) || initRedmineWysiwygEditor(element);
+    }).get();
+  }
+
+  find(element) {
+    return this.editors.find(x => $(element).is(x._jstEditor));
+  }
+}
+
+function initRedmineWysiwygEditor(element) {
+  var setVisible = function() {
+    // Fixed for IE 11
+    const ua = navigator.userAgent;
+    if (ua.indexOf('Trident') !== -1) {
+      $('.jstElements').parent().addClass('tab-elements');
+    }
+
+    $('.jstTabs, .jstElements, .jstEditor').css('visibility', 'visible');
+  };
+
+  var previewTab = $('.jstTabs .tab-preview');
+  var previewButton = $('a[accesskey=r]');
+
+  var previewUrl = (previewTab.length > 0) ? previewTab.data('url') :
+      (previewButton.length > 0) ?
+      previewButton.attr('onclick').match(/submitPreview\("(.+?)",/)[1] :
+      null;
+
+  if (!previewUrl) {
+    setVisible();
+    return;
+  }
+
+  var allAttachments = function() {
+    var attachments = <%= raw attachments.to_json %>;
+
+    $('.attachments_fields span, #attachments_fields span').each(function() {
+      var token = $(element).find('input.token').val();
+
+      if (token) {
+        var name = $(element).find('input.filename').val();
+        var m = token.match(/^(\d+)\./);
+
+        attachments.push({id: parseInt(m[1]), name: name});
+      }
+    });
+
+    return attachments;
+  };
+
+  var uploader = function(file) {
+    var input = this._jstEditor.closest('form').find('input:file.filedrop');
+    if (input.length > 0) {
+      var sizeExceeded = uploadAndAttachFiles([file], input);
+
+      return !sizeExceeded;
+    } else {
+      // For Redmine 3.3
+      uploadAndAttachFiles([file], $('input:file.file_selector'));
+
+      return true;
+    }
+  };
+
+  var isAttachmentUploadable = function(jstEditor) {
+    // Disables uploading in editing note and adding news comment.
+    return (jstEditor.closest('.journal').length === 0) &&
+      (jstEditor.closest('#add_comment_form').length === 0);
+  };
+
+  // For Redmine Issue Template plugin 1.1.0+
+  var overrideIssueTemplatePluginMethods = function(rwe) {
+    if (typeof ISSUE_TEMPLATE === 'undefined') return;
+
+    var replace = ISSUE_TEMPLATE.prototype.replaceTemplateValue;
+
+    ISSUE_TEMPLATE.prototype.replaceTemplateValue = function(obj) {
+      replace.call(element, obj);
+      rwe.updateVisualContent();
+    };
+
+    var erase = ISSUE_TEMPLATE.prototype.eraseSubjectAndDescription;
+
+    ISSUE_TEMPLATE.prototype.eraseSubjectAndDescription = function() {
+      erase.call(element);
+      rwe.updateVisualContent();
+    };
+
+    var revert = ISSUE_TEMPLATE.prototype.revertAppliedTemplate;
+
+    ISSUE_TEMPLATE.prototype.revertAppliedTemplate = function() {
+      revert.call(element);
+      rwe.updateVisualContent();
+    };
+  };
+
+  var postInit = function (rwe) {
+    $(document).ajaxSuccess(function(event, xhr, settings) {
+      var url = settings.url;
+
+      if (/\/quoted(\?.+)?$/.test(url) ||
+          /\/issue_templates\/load(\?.+)?$/.test(url)) {
+        // Set comment content with quoted text or issue template.
+        rwe.updateVisualContent();
+      } else if (/\/uploads\.js\?.+$/.test(url)) {
+        var a = allAttachments();
+        var m = xhr.responseText.match(/attachments\/(\d+)\.js/);
+
+        // Adds attachment which has been uploaded just now.
+        a.push({id: parseInt(m[1]), name: settings.data.name});
+
+        rwe.setAttachments(a);
+      } else if (/\/attachments\/\d+\.js/.test(url)) {
+        // Update when an attachment is deleted.
+        rwe.setAttachments(allAttachments());
+      }
+    });
+
+    // Redmine 4.1+
+    $(document).on('ajax:success', function(event) {
+      var url = event.target.href;
+
+      if (/\/quoted(\?.+)?$/.test(url)) {
+        // Set comment content with quoted text.
+        rwe.updateVisualContent();
+      }
+    });
+
+    // For Redmine Issue Template Plugin
+    overrideIssueTemplatePluginMethods(rwe);
+
+    setVisible();
+  };
+
+  var rwe = new RedmineWysiwygEditor($(element), previewUrl);
+
+  rwe.setPostInitCallback(function() { postInit(rwe) });
+
+  rwe.setPrefixPath('<%= home_path %>');
+  rwe.setFormat('<%= formatting %>');
+  rwe.setLanguage('<%= current_language %>');
+  rwe.setI18n({
+    textile: 'Textile',
+    markdown: 'Markdown',
+    common_mark: 'Markdown',
+    visual: '<%= l(:label_visual_editor) %>',
+    preview: '<%= l(:label_preview) %>',
+    project: '<%= l(:label_project) %>',
+    page: '<%= l(:label_wiki_page) %>',
+    text: '<%= l(:label_string) %>',
+    mainPage: '<%= l(:field_start_page) %>',
+    insertWikiLink: '<%= l(:label_insert_wiki_link) %>'
+  });
+  rwe.setAttachments(allAttachments());
+  if (isAttachmentUploadable($(element))) rwe.setAttachmentUploader(uploader);
+
+  rwe.setHtmlTagAllowed(<%= html_tag_allowed ? 'true' : 'false' %>);
+  rwe.setAutocomplete('<%= escape_javascript auto_complete_issues_path %>',
+                      '<%= escape_javascript editor_users_path %>');
+  rwe.setTabModeSwitch(<%= (Setting.plugin_redmine_wysiwyg_editor[:visual_editor_mode_switch_tab] == '1') ? 'true' : 'false' %>);
+
+  var pid = <%= (@project && @project.id) ? @project.id : 'null' %> ||
+      $('#issue_project_id').val();
+
+  var pkey = '<%= (@project && @project.identifier) ? @project.identifier : '' %>';
+
+  rwe.setProject(pid, pkey);
+
+  var setting = (typeof WYSIWYG_EDITOR_SETTING !== 'undefined') ?
+      WYSIWYG_EDITOR_SETTING : {};
+
+  rwe.init(setting);
+
+  return rwe
+}
+
+let redmineWysiwygEditorManager = new RedmineWysiwygEditorManager();
+
+$(function() {
+  redmineWysiwygEditorManager.update();
+
+  $(document).ajaxSuccess(function (event, jqXHR, ajaxSettings, thrownError) {
+    redmineWysiwygEditorManager.update();
+  });
+
+  // Redmine 4.1+
+  $(document).on('ajax:success', function (event) {
+    redmineWysiwygEditorManager.update();
+  });
+});
+    </script>
+  <% end
+end %>

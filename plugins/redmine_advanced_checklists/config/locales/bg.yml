@@ -1,0 +1,6 @@
+bg:
+  label_checklist_plural: Чеклист
+  permission_view_checklists: Разглеждане на чеклисти
+  permission_done_checklists: Изпълнение на чеклисти
+  permission_edit_checklists: Редактиране на чеклисти
+  label_assign_to_me: Назначи на мен

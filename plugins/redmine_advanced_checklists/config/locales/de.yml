@@ -1,0 +1,16 @@
+de:
+  label_checklist_plural: Checkliste
+  permission_view_checklists: Checkliste anzeigen
+  permission_done_checklists: Checkliste anwenden
+  permission_edit_checklists: Checkliste bearbeiten
+  label_checklist_template_category_plural: Kategorien
+  label_checklist_template_category_new: Neue Kategorie
+  label_checklist_templates: Checklisten-Vorlagen
+  label_checklist_new_checklist_template: Neue Checklisten-Vorlage
+  field_template_items: "Einträge"
+  label_checklist_template: Checklisten-Vorlage
+  label_add_checklists_from_template: "Aus Vorlage wählen"
+  label_checklist_import_hint: 'Mehrere Einträge erlaubt (ein Eintrag pro Zeile)'
+  label_checklist_item: Checklisten-Eintrag
+  label_checklists_must_be_completed: "Alle Checklisten-Einträge eines Tickets müssen vor dem Schließen erledigt werden."
+  label_assign_to_me: Mir zuweisen

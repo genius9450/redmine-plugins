@@ -1,0 +1,8 @@
+<% content_for(:header_tags) do %>
+  <%= stylesheet_link_tag('redmine-kanban', plugin: 'redmine_kanban') %>
+<% end %>
+
+<%= render_tabs([
+  {name: 'general', partial: 'settings/kanban/general', label: :label_kanban},
+  {name: 'issue_size', partial: 'settings/kanban/issue_size', label: :label_issue_size},
+]) %>

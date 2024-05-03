@@ -1,0 +1,22 @@
+<%= title [issue_heading(@issue) , issue_path(@issue)],  l(:label_issue_status) %>
+
+<% html_title(l(:label_issue_status_plural)) %>
+
+<% if @statuses_collector.data.any? %>
+  <table class="list"><thead>
+  <tr>
+      <th>#</th>
+      <th><%= l(:field_created_on) %></th>
+      <th><%= l(:field_status) %></th>
+      <th><%= l(:field_duration) %></th>
+      <th><%= l(:field_author) %></th>
+      <th><%= l(:field_assigned_to) %></th>
+  </tr></thead>
+  <% @statuses_collector.data.each_with_index do |data, index| %>
+    <% issue_status = IssueStatus.where(:id => data[:status_id]).first %>
+    <%= render partial: 'status_detail', locals: { issue_status: issue_status, data: data, index: index } %>
+  <% end %>
+  </table>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>

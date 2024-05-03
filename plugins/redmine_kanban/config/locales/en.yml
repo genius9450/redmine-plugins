@@ -1,0 +1,82 @@
+# English strings go here for Rails i18n
+en:
+  # common
+  project_module_kanban: 'Agile boards'
+
+  # labels
+  label_kanban: 'Boards'
+  label_issue_block_history: 'Block history'
+  label_total_block_duration: 'Total block duration'
+  label_swimlanes: 'Swimlanes'
+  label_my_kanban_queries: 'My boards'
+  label_kanban_query_plural: 'Shared boards'
+  label_show_in_top_menu: 'Show in top menu'
+  label_show_in_app_menu: 'Show in application menu'
+  label_table_view: 'Table view'
+  label_allow_add_issues: 'Allow adding issues'
+  label_disable_add_issues: 'Prohibit adding issues'
+  label_fullscreen: 'Fullscreen'
+
+  label_favorite_kanban_queries: 'Favorite boards'
+  label_sort_order: 'Sort order'
+
+  # fields
+  field_block_reason: 'Block'
+  field_blocked_at: "Blocked at"
+  field_remove_block: 'Remove block reason'
+  field_start: 'Start'
+  field_finish: 'Finish'
+  field_duration: 'Duration'
+  field_finish_date: 'Finish date'
+  field_sort_order: 'Sort order'
+
+  # buttons
+  button_favorites_add: 'Add to favorites'
+  button_favorites_remove: 'Remove from favorites'
+  button_select_boards: 'Select board'
+  button_hide_boards: 'Hide boards'
+  button_board_options: 'Board options'
+  button_hide_options: 'Hide options'
+
+  permission_view_kanban: 'View'
+  permission_save_queries_kanban: 'Edit boards'
+  permission_edit_sort_order: 'Change issue sort order'
+  permission_manage_public_queries_kanban: 'Edit public boards'
+
+  # for show in system history
+  journal_block_deleted: 'Block deleted'
+  journal_block_added: 'Block added'
+
+  # frontend
+  info_my_tasks_button: 'Issues assigned to me or my groups'
+  info_locked_button: 'Issues with blocks'
+
+  errors.defaultError: 'Error! Reload page'
+  errors.statusChangeError: 'Error on change status'
+  errors_error: 'Error'
+
+  errors.statusOrderError: 'Error on change sort order'
+
+  success: 'Success'
+  withoutPerformer: 'No assigner'
+  answer_from: 'Answer from'
+
+  # kanban issue size
+  label_issue_size: 'Issue size'
+  label_use_issue_sizes: 'Use issue size'
+  title_issue_size_create: 'Create new issue size'
+  title_issue_size_edit: 'Edit issue size "%{name}"'
+  field_kanban_issue_size: 'Issue size'
+  error_denied_destroy_not_empty_size: 'Failed to delete with related issues'
+
+  hint_issues_count: 'Count of issues'
+  message_total_issues: 'issues {count} of {total}'
+
+  # hints
+  hint_block_reason: 'An external or internal reason why work on a given task cannot be continued and must wait until this reason is solved'
+  hint_issue_size: 'Estimate issue size'
+  hint_kanban_wip_limit: Work-in-progress limit
+
+  label_kanban_board_columns_options: 'Board columns options'
+  hint_save_board_for_custom_columns: 'Save board for more options'
+  hint_edit_board_for_custom_columns: 'Got to edit for more options'

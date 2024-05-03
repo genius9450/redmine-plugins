@@ -1,0 +1,6 @@
+ja:
+  label_checklist_plural: "チェックリスト" # Checklist
+  permission_view_checklists: "チェックリストの参照" # View checklist
+  permission_done_checklists: "チェックリストへ済印" # Done checklist items
+  permission_edit_checklists: "チェックリストの編集" # Edit checklist items
+  label_assign_to_me: 自分に割り当て

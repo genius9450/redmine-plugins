@@ -1,0 +1,5 @@
+sv:
+  label_checklist_plural: Checklista
+  permission_view_checklists: Visa checklistor
+  permission_done_checklists: Klara checklistepunkter
+  permission_edit_checklists: Redigera checklistepunkter

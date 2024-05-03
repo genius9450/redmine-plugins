@@ -1,0 +1,10 @@
+<% if @issue.size.present? %>
+  <div>
+    <%= issue_fields_rows do |rows|
+      rows.left(
+        content_tag(:span, l(:label_issue_size), title: l(:hint_issue_size)),
+        @issue.size&.name
+        )
+    end %>
+  </div>
+<% end %>

@@ -1,0 +1,31 @@
+<%= title [issue_heading(@issue) , issue_path(@issue)],  l(:label_issue_block_history) %>
+
+<% html_title(l(:label_issue_status_plural)) %>
+
+<% if @history_collector.history.any? %>
+<table class="list">
+  <thead>
+    <tr>
+        <th><%= l(:field_duration) %></th>
+        <th><%= l(:field_start_date) %></th>
+        <th><%= l(:field_author) %></th>
+        <th><%= l(:field_finish_date) %></th>
+        <th><%= l(:field_author) %></th>
+        <th><%= l(:label_details) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @history_collector.history.each_with_index do |data, index| %>
+      <%= render partial: 'block_history_detail', locals: { data: data } %>
+    <% end %>
+  </tbody>
+</table>
+<% if @history_collector.durations[:total].present? %>
+<div>
+  <%= l(:label_total_block_duration) %> &ndash;
+  <%= distance_of_time_in_words(@history_collector.durations[:total], 0, {include_seconds: true}) %>
+</div>
+<% end %>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>

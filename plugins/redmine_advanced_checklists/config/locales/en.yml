@@ -1,0 +1,104 @@
+# English strings go here for Rails i18n
+en:
+  project_module_advanced_checklists: 'Checklists'
+  #settings_tab_label_checklist_templates: "Checklists"
+  label_checklist_plural: "Checklists"
+  label_checklist: "Checklist"
+  label_advanced_checklists: "Advanced Checklists"
+  label_personal_checklist_plural: "Personal checklists"
+  label_personal_checklist: "Personal checklist"
+
+  error_question_not_assignable: '"%{name}" can not be assigned to this issue'
+
+  permission_manage_global_checklist_templates: 'Manage global checklist templates'
+  permission_manage_project_checklist_templates: 'Manage project checklist templates'
+  permission_manage_global_assigned_checklist_templates: 'Manage global personal checklist templates'
+  permission_manage_project_assigned_checklist_templates: 'Manage project personal checklist templates'
+  permission_manage_any_checklist_assigned: 'Edit any personal checklist'
+  permission_view_view_advanced_checklists: 'View advanced checklists'
+  error_no_privileges: "No privileges"
+
+  invalid_action_attribute: "Invalid action parameter"
+  label_checklist_item: "Checklist item"
+
+  # for show in checklist history
+  history_checklist_item_add_attach: 'added file <strong>"%{value}"</strong>  <strong>"%{descr}"</strong>'
+  history_checklist_item_create: 'created item %{value} assigned to %{assigned_to}'
+  history_checklist_item_done: 'set <i>done</i> <s>%{value}</s>'
+  history_checklist_item_undone: 'set <i>undone</i> %{value}'
+  history_checklist_item_deleted: 'Item with id <strong>%{id}</strong> was deleted'
+  history_checklist_item_answer: 'Answered %{value}'
+  history_checklist_item_answer_created: 'Answered <strong>"%{value}"</strong> on <strong>"%{item}"</strong>'
+  history_checklist_item_answer_content: 'Answer content changed <strong>"%{value}"</strong> on <strong>"%{item}"</strong>'
+  history_checklist_item_answer_deleted: 'Answer deleted <strong>"%{value}"</strong> on <strong>"%{item}"</strong>'
+  history_checklist_item_answer_deleted_no_item: 'Answer was deleted <strong>"%{value}"</strong>'
+
+
+  history_attach_renamed: 'renamed attachment to <strong>"%{value}"</strong> from <strong>"%{old_value}"</strong>'
+  history_attach_description_changed: 'changed description to <strong>"%{value}"</strong> from <strong>"%{old_value}"</strong>'
+  history_attach_delete: 'deleted attachment <strong>"%{old_value}"</strong>'
+
+  # frontend
+  showIsDone: 'Show completed'
+  hideIsDone: 'Hide completed'
+  label_completed_by: 'Completed by'
+  addDeadline: 'Set due date...'
+  editDeadline: 'Edit due date'
+  removeDeadline: 'Remove due date'
+  addResponsible: 'Assign >'
+  copyText: 'Copy text'
+  editComment: 'Change answer'
+  removeComment: 'Delete answer'
+  removeAssignee: 'Delete assigner'
+  button_save_as_template: 'Save as template'
+  areYouSureToAddTemplate: 'Are you sure you want to save the template'
+  createTemplate: 'New template'
+  autoInstallTemplate: 'Auto add template'
+  noTemplateCreated: 'No templates'
+  bindTemplateToProject: 'bind template to project'
+  # errors
+  errors_createVisaTemplateTaskError: 'For the personal template type, all fields must be filled in'
+  errors_error: 'Error'
+  errors_defaultError: 'Something went wrong! Refresh the page'
+  errors_checklistItemAlreadyAssigned: 'The checklist item(s) is already assigned to this user'
+  errors_unknown_list_type: 'Unknown list type'
+
+  label_success: 'Success'
+  answer_from: 'Answer from'
+
+  label_new_personal_checklist: 'New personal checklist'
+  label_new_checklist: 'New checklist'
+
+  permission_view_checklists: View checklist
+  permission_done_checklists: Done checklist items
+  permission_edit_checklists: Edit checklist items
+  label_checklist_template_category_plural: Template categories
+  label_checklist_template_category_new: New category
+  label_checklist_templates: Checklist templates
+  label_checklist_template: Checklist template
+  label_checklist_new_checklist_template: New checklist template
+  field_template_items: Template items
+  label_add_checklists_from_template: Add from template
+  label_checklists_from_template: From template
+  label_checklist_import_hint: 'Multiple values allowed (one line for each value)'
+  label_checklists_must_be_completed: All checklists of an issue must be done before closing
+  label_checklists_should_be_assigned: All checklists should be assigned
+  label_respect_checklist_assigners_in_filter: Respect checklist assigners in filter
+  label_view_all: 'View all'
+  label_save_assigned: 'Save assigned users'
+  select_file: 'Select file'
+  label_checklist_item_plural: 'Items'
+  field_checklist: 'Checklist'
+  label_checklist_assigned_to: 'element assigned'
+  label_checklist_done: 'element done'
+  label_checklist_assignees: 'Checklist assignees'
+
+  hint_edit_templates: "Hint: for edit public templates you need <b>%{permission_manage_global_checklist_templates}</b> or <b>%{permission_manage_project_checklist_templates}</b>"
+  hint_visa_item_should_be_assigned: 'You need assign personal checklist item'
+
+  label_advanced_checklist_plural: "Checklists"
+  button_share_checklist_item: "Copy link"
+
+  #Free
+  message_disabled_create_more_one: "You cannot create more than one checklist in the free version"
+  message_available_in_pro_version: "Available in pro version"

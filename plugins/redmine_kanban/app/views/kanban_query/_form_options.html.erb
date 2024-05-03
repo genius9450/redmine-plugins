@@ -1,0 +1,43 @@
+<div class="kanban-options">
+  <% if @query.available_block_columns.any? %>
+    <div class="kanban-options__row">
+      <div class="kanban-options__name">
+        <%= l(:button_show) %>
+      </div>
+      <div class="kanban-options__list mutable-list-options">
+        <%= available_kanban_columns_tags(@query) %>
+      </div>
+    </div>
+  <% end %>
+  <% if !@query.use_custom_columns? && hide_advanced_options||=false %>
+    <div id="kanban-options-statuses" class="kanban-options__row">
+      <div class="kanban-options__name">
+        <%= l(:label_kanban_board_columns_options) %>
+      </div>
+      <div class="kanban-options__list">
+        <%= available_statuses_tags(@query) %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
+<script>
+$(window).on('load resize', () => {
+  calculateTableHeight();
+})
+
+function calculateTableHeight() {
+  const listOptionsWidth = $("#options").width();
+  const optionStyle = {
+    width: 260,
+    height: 30,
+  };
+  const countOfListItems = $(".mutable-list-options").find(".inline").length;
+
+  const countOfColumns = Math.floor(listOptionsWidth / optionStyle.width);
+  const countOfAddedRows = Math.ceil(countOfListItems / countOfColumns);
+
+  $(".mutable-list-options").css({"maxHeight": `${countOfAddedRows * optionStyle.height}px`})
+};
+</script>

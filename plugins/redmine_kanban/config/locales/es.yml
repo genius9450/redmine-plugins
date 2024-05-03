@@ -1,0 +1,7 @@
+es:
+  project_module_kanban: Tableros ágiles
+  label_swimlanes: Swimlanes
+  label_default_board: tablero por defecto
+  permission_save_queries_kanban: Guardar tablero
+  field_block_reason: Bloqueado
+  errors.statusChangeError: No se puede cambiar el estado de la petición

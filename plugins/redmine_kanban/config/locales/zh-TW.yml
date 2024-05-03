@@ -1,0 +1,9 @@
+zh-TW:
+  project_module_kanban: 敏捷看板
+  label_my_boards: 我的敏捷看板
+  permission_manage_public_boards_kanban: 管理公共敏捷看板
+  label_swimlanes: 泳道
+  label_default_board: 默認看板
+  field_block_reason: 鎖定
+  errors.statusChangeError: 不能更改問題狀態
+  label_fullscreen: 全屏

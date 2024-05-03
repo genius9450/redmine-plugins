@@ -1,0 +1,7 @@
+<div class="splitcontentleft">
+    <%= form.fields_for :kanban_issue do |f| %>
+      <p>
+        <%= f.text_field(:block_reason, label: content_tag(:span, l(:label_board_locked), title: l(:hint_block_reason)), size: 100) %>
+      </p>
+    <% end %>
+</div>

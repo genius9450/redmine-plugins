@@ -1,0 +1,12 @@
+# Traditional Chinese strings go here for Rails i18n
+zh-TW:
+  issues_tree:
+    tree_view: 樹狀視圖
+    expand_current_nodes: 展開到下一級
+    collapse_all: 全部收攏
+    back_to_plain_list: 扁平結構
+    errors:
+      unable_to_group_in_tree_view: 無法以樹狀視圖分組
+    settings:
+      default_redirect_to_tree_view: "單專案畫面時,將樹狀視圖設為議題的默認顯示頁面（若專案包含超過1,000+以上的議題，顯示速度將會非常非常慢，慎用！！）"
+      default_redirect_to_tree_view_without_project: "多專案畫面時,將樹狀視圖設為議題的默認顯示頁面（若專案包含超過1,000+以上的議題，顯示速度將會非常非常慢，慎用！！）"

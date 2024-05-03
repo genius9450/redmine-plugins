@@ -1,0 +1,5 @@
+ko:
+  label_checklist_plural: "체크리스트"
+  permission_view_checklists: "체크리스트 보기"
+  permission_done_checklists: "체크리스트 완료"
+  permission_edit_checklists: "체크리스트 수정"

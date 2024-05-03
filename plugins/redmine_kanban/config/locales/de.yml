@@ -1,0 +1,11 @@
+de:
+  project_module_kanban: Agile Taskboards
+  label_swimlanes: Swimlanes
+  permission_manage_public_boards_kanban: Taskboards verwalten
+  label_my_boards: Meine Taskboards
+  label_default_board: Standard-Taskboard
+  permission_save_queries_kanban: Boards speichern
+  field_block_reason: Gesperrt
+  errors.statusChangeError: Aufgabenstatus konnte nicht geändert werden.
+  label_fullscreen: Vollbild
+  label_kanban_board_columns_options: Board Spalten

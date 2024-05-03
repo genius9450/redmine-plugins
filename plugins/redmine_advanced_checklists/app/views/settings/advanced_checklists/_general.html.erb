@@ -1,0 +1,35 @@
+<p>
+  <label><%= l(:label_checklists_should_be_assigned) %></label>
+  <span>
+    <span class="floating" style="margin-left: 0px;">
+    <%= hidden_field_tag 'settings[checklists_should_be_assigned]', 0 %>
+      <%= check_box_tag 'settings[checklists_should_be_assigned]', 1, @settings["checklists_should_be_assigned"].to_i > 0 %>
+    </span>
+  </span>
+</p>
+
+<p>
+  <label><%= l(:label_respect_checklist_assigners_in_filter) %></label>
+  <span>
+    <span class="floating" style="margin-left: 0px;">
+    <%= hidden_field_tag 'settings[respect_checklist_assigners_in_filter]', 0 %>
+      <%= check_box_tag 'settings[respect_checklist_assigners_in_filter]', 1, @settings["respect_checklist_assigners_in_filter"].to_i > 0 %>
+    </span>
+  </span>
+</p>
+
+<fieldset class="box">
+  <legend><%= toggle_checkboxes_link("#enabled_in_projects input[type=checkbox]:enabled") %><%= l(:label_project_plural) %></legend>
+
+  <div id="custom_field_project_ids" class="project-list-setting">
+    <% project_ids = Project.all.select { |sub| sub.module_enabled?('advanced_checklists') }.map(&:id) %>
+    <%= render_project_nested_lists(Project.all) do |p|
+      content_tag('label', check_box_tag('settings[project_ids][]', p.id, project_ids.include?(p.id), :id => nil) + ' ' + p)
+    end %>
+  </div>
+  <p><%= check_all_links 'custom_field_project_ids' %></p>
+</fieldset>
+
+<script>
+'use strict';
+</script>

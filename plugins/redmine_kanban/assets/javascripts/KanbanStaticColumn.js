@@ -1,0 +1,1 @@
+import{_ as o}from"./KanbanStaticColumn.vue_vue_type_script_setup_true_lang.js";/* empty css                          */import"./columns.js";import"./ModalsView.js";import"./kanban.js";import"./vuedraggable.umd.js";import"./KanbanColumn.vue_vue_type_script_setup_true_lang.js";import"./KanbanStatus.vue_vue_type_script_setup_true_lang.js";export{o as default};

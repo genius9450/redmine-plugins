@@ -1,0 +1,44 @@
+<p>
+  <label><%= l(:label_show_in_top_menu) %></label>
+  <span>
+    <span class="floating" style="margin-left: 0px;">
+    <%= hidden_field_tag('settings[kanban_show_in_top_menu]', 0) %>
+    <%= check_box_tag('settings[kanban_show_in_top_menu]', 1, @settings['kanban_show_in_top_menu'].to_i.positive?) %>
+    </span>
+  </span>
+</p>
+
+<p>
+  <label><%= l(:label_show_in_app_menu) %></label>
+  <span>
+    <span class="floating" style="margin-left: 0px;">
+    <%= hidden_field_tag('settings[kanban_show_in_app_menu]', 0) %>
+      <%= check_box_tag('settings[kanban_show_in_app_menu]', 1, @settings['kanban_show_in_app_menu'].to_i.positive?) %>
+    </span>
+  </span>
+</p>
+<p>
+
+  <label><%= l(:label_use_issue_sizes) %></label>
+  <span>
+    <span class="floating" style="margin-left: 0px;">
+    <%= hidden_field_tag('settings[use_kanban_issue_sizes]', 0) %>
+      <%= check_box_tag('settings[use_kanban_issue_sizes]', 1, @settings['use_kanban_issue_sizes'].to_i.positive?) %>
+    </span>
+  </span>
+</p>
+
+<fieldset class="box">
+  <legend>
+    <%= toggle_checkboxes_link('#enabled_in_projects input[type=checkbox]:enabled') %><%= l(:label_project_plural) %>
+  </legend>
+  <div id="custom_field_project_ids" class="project-list-setting">
+    <% project_ids = Project.all.select {|sub| sub.module_enabled?('kanban')}.map(&:id) %>
+    <%= render_project_nested_lists(Project.all) do |p|
+      content_tag('label', check_box_tag('settings[project_ids][]', p.id, project_ids.include?(p.id), id: nil) + ' ' + p)
+    end %>
+  </div>
+  <p>
+    <%= check_all_links('custom_field_project_ids') %>
+  </p>
+</fieldset>

@@ -1,0 +1,89 @@
+
+
+<div id="kanban_form" class="<% if @query.id %>hidden<% end %>">
+  <%= form_tag({}, {:method => :get, :id => 'query_form'}) do %>
+    <%= render :partial => 'kanban_query/form' %>
+  <% end %>
+</div>
+
+<div id="app">
+  <p><%= l(:label_loading) %></p>
+</div>
+
+<script>
+    var kanban_board_settings = <%= @settings.to_json.html_safe %>;
+</script>
+
+<%= context_menu %>
+
+<%= render :partial => 'kanban/settings' %>
+
+    <% content_for :header_tags do %>
+      <%= stylesheet_link_tag 'redmine-kanban', plugin: 'redmine_kanban' %>
+    <% end %>
+    <%= javascript_include_tag 'redmine-kanban.js', plugin: 'redmine_kanban', :type => 'module' %>
+    <% if KanbanSettings.is_advanced_checklists_installed? %>
+	    <%= javascript_include_tag 'checklists.js', plugin: 'redmine_advanced_checklists', :type => 'module' %>
+      <% content_for :header_tags do %>
+        <%= stylesheet_link_tag 'main', plugin: 'redmine_advanced_checklists' %>
+        <%= stylesheet_link_tag 'checklists', plugin: 'redmine_advanced_checklists' %>
+      <% end %>
+    <% end %>
+
+<script>
+$(function() {
+  $('.toggle-boards-visibility').on('click', function(e) {
+    e.preventDefault();
+    const $boardsList = $('#kanban_board_settings');
+    const label_show = '<%= l(:button_select_boards) %>';
+    const label_hide = '<%= l(:button_hide_boards) %>';
+    
+    $boardsList.toggleClass('hidden');
+
+    if ($boardsList.hasClass('hidden')) {
+      $(this).text(label_show);
+    } else {
+      $(this).text(label_hide);
+    }
+  });
+});
+
+$(function() {
+  $('.toggle-filters-visibility').on('click', function(e) {
+    e.preventDefault();
+    const $boardsList = $('#kanban_form');
+    const label_show = '<%= l(:button_board_options) %>';
+    const label_hide = '<%= l(:button_hide_options) %>';
+    
+    $boardsList.toggleClass('hidden');
+
+    if ($boardsList.hasClass('hidden')) {
+      $(this).text(label_show);
+    } else {
+      $(this).text(label_hide);
+    }
+  });
+});
+
+</script>
+
+<style>
+.current-board-name {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  font-size: 12px;
+  line-height: 1;
+}
+.current-board-name .icon-clear-query {
+  margin-right: 8px;
+}
+.kanban_board_settings {
+  margin-bottom: 16px;
+}
+.toggle-filters-visibility,
+.toggle-boards-visibility {
+  display: inline-block;
+  margin-right: 16px
+}
+</style>

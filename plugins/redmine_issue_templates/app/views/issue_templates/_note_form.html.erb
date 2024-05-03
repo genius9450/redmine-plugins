@@ -1,0 +1,53 @@
+<%
+  element_id = type
+  if type == 'template_edit_journal'
+    element_id = "template_journal_#{@journal.id}_notes"
+  end
+  project_id = issue&.project_id
+  tracker_id = issue&.tracker_id
+%>
+<div id='<%= element_id %>'>
+  <label for='select_note_template' style='font-weight: bold;'>
+    <%=h l(:label_template_for_note, default: 'Template for note') %>
+  </label>
+  <a class='icon template_tooltip' id='link_<%= element_id %>_dialog' href='#<%= element_id %>_dialog' onclick='noteTemplateNS.changeNoteTemplateList("<%= element_id %>")'>
+    <%=h l(:display_and_filter_issue_templates_in_dialog, default: 'Filter Templates') %>
+  </a>
+  <!-- dialog box -->
+  <div id='<%= element_id %>_dialog' class='overlay'>
+    <div class='popup'>
+     <div class='header_wrapper'>
+       <div class='popup_header'>
+         <h2><%=h l(:label_template_for_note, default: 'Select template for note') %>  <a class="close" href="#">&times;</a></h2>
+       </div>
+     </div>
+      <div class='filtered_templates_list'>
+        <!-- Replaced contemts -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type='text/javascript'>
+  var noteTemplateConfig = {
+    baseElementId: '<%= element_id %>',
+    baseTemplateListUrl: '<%= url_for(controller: 'note_templates', action:'list_templates') %>',
+    baseTrackerId: <%= tracker_id %>,
+    baseProjectId: <%= project_id %>,
+    loadNoteTemplateUrl: '<%= load_note_templates_path %>'
+  }
+
+  // let baseElementId = '<%= element_id %>'
+  let content = document.querySelectorAll('#' + noteTemplateConfig.baseElementId)
+
+  if (content.length === 1) {
+    let element = content[0].closest('form')
+    if (noteTemplateConfig.baseElementId === 'template_issue_notes') {
+      element = content[0].closest('fieldset')
+    }
+    element.insertBefore(content[0], element.firstChild)
+  }
+
+  var noteTemplateNS = noteTemplateNS || new NOTE_TEMPLATE(noteTemplateConfig)
+</script>

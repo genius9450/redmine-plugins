@@ -1,0 +1,5 @@
+pt-BR:
+  label_checklist_plural: Checklist
+  permission_view_checklists: Ver checklist
+  permission_done_checklists: Remover itens do checklist
+  permission_edit_checklists: Alterar itens do checklist

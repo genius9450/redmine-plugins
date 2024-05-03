@@ -1,0 +1,13 @@
+if @query.group_by_column.nil?
+  api.array(:issues) do
+    @query.issues(limit: KanbanSettings.issues_limit).each do |issue|
+      api.issue do
+        render_issue_on_board(issue, api)
+      end
+    end
+  end
+else
+  # empty line
+end
+
+api.total(@query.issue_count)

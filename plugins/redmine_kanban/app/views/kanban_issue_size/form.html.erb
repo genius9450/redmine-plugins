@@ -1,0 +1,13 @@
+<%= title([l(:label_plugins), {controller: 'admin', action: 'plugins'}], 'Kanban board plugin', @lbl) %>
+
+<%= form_with(url: @url, method: 'POST') do |f| %>
+  <div class="box tabular">
+    <p id="form_type">
+      <%= f.label(:name, l(:field_name)) %>
+      <%= f.text_field(:name, size: 100, value: @size&.name) %>
+    </p>
+    <p>
+      <%= f.submit(l(:button_create)) %>
+    </p>
+  </div>
+<% end %>

@@ -1,0 +1,1 @@
+import{y as o,o as t,k as s,t as a,P as l,Q as r}from"./ModalsView.js";const c=o({__name:"ChipPrimitive",props:{title:{},color:{default:"#F01B28"},font:{default:"white"},size:{default:"sm"}},setup(i){return(e,n)=>(t(),s("div",{class:l(["chip",e.size]),style:r({backgroundColor:e.color,color:e.font})},a(e.title),7))}});export{c as _};

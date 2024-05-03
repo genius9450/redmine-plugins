@@ -1,0 +1,40 @@
+<tr class="<%= cycle('odd', 'even') %>">
+  <td>
+    <%= distance_of_time_in_words(data[:duration], 0, {include_seconds: true}) %>
+  </td>
+  <td>
+    <% if data[:start].present? %>
+      <%= format_time(data[:start]) %>
+    <% else %>
+      -
+    <% end %>
+  </td>
+  <td class="name">
+  <% if data[:who_started].present? %>
+      <%= data[:who_started] %>
+    <% else %>
+      -
+    <% end %>
+  </td>
+  <td>
+    <% if data[:finish].present? %>
+      <%= format_time(data[:finish]) %>
+    <% else %>
+      -
+    <% end %>
+  </td>
+  <td class="name">
+    <% if data[:who_finished].present? %>
+      <%= data[:who_finished] %>
+    <% else %>
+      -
+    <% end %>
+  </td>
+  <td>
+    <% if data[:block_issue_id].present? %>
+      <%= link_to_issue(Issue.find(data[:block_issue_id])) %>
+    <% else %>
+      <%= data[:text] %>
+    <% end %>
+  </td>
+</tr>

@@ -1,0 +1,8 @@
+<% if @issue.project.module_enabled?('kanban') && @issue.new_record? == false %>
+  <div class="attributes">
+    <div class="splitcontent">
+      <%= render(partial: 'issue_blocked_form', locals: {form: form}) %>
+      <%= render(partial: 'issue_size_form', locals: {form: form}) if KanbanSettings.is_use_kanban_issue_sizes? %>
+    </div>
+  </div>
+<% end -%>

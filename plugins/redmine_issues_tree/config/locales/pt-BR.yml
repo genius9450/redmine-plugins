@@ -1,0 +1,11 @@
+pt-BR:
+  issues_tree:
+    tree_view: Agrupar tarefas
+    expand_current_nodes: Expandir um nível
+    collapse_all: Retrair todos
+    back_to_plain_list: Desagrupar tarefas
+    errors:
+      unable_to_group_in_tree_view: Não foi possível agrupar as tarefas
+    settings:
+      default_redirect_to_tree_view: Agrupar por padrão nas páginas de tarefas dos projetos (pode ficar muito lento em caso de projetos com mais de 1000 tarefas)
+      default_redirect_to_tree_view_without_project: Agrupar por padrão na página de tarefas fora do escopo de projetos (pode ficar muito lento em instalações com mais de 1000 tarefas)

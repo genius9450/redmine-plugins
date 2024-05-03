@@ -1,0 +1,16 @@
+dist: focal
+language: node_js
+
+node_js:
+  - "14"
+  - "16"
+  - "18"
+
+before_install:
+  - mv Gemfile.local Gemfile
+  - bundle install
+
+script:
+  - npm run eslint
+  - npm run test
+  - bundle exec rubocop

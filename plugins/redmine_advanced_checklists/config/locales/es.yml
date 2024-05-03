@@ -1,0 +1,14 @@
+es:
+  label_checklist_plural: Checklist
+  permission_view_checklists: Ver checklist
+  permission_done_checklists: Cerrar items de checklist
+  permission_edit_checklists: Editar iterms de checklist
+  label_checklist_template_category_plural: Categorías de plantillas
+  label_checklist_template_category_new: Nueva categoría
+  label_checklist_templates: Plantillas de checklists
+  label_checklist_new_checklist_template: Nueva plantilla de checklist
+  field_template_items: Items de la plantilla
+  label_checklist_template: Plantilla de checklist
+  label_add_checklists_from_template: Añadir desde plantilla
+  label_checklist_import_hint: 'Se permiten múltiples valores (un valor por línea)'
+  label_checklist_item: Item de checklist

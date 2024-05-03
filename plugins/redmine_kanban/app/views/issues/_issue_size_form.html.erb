@@ -1,0 +1,11 @@
+<div class="splitcontentleft">
+  <%= form.fields_for(:kanban_issue) do |f| %>
+    <p>
+      <%= f.select(:size_id,
+                   KanbanIssueSize.get_all_ordered.map {|s| [s.name, s.id]},
+                   label: content_tag(:span, l(:label_issue_size), title: l(:hint_issue_size)),
+                   selected: @issue.size&.id,
+                   include_blank: true) %>
+    </p>
+  <% end %>
+</div>

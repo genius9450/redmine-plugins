@@ -1,0 +1,36 @@
+# French strings go here for Rails i18n
+fr:
+  label_checklist_new_checklist_template: Ajouter un template
+  field_template_items: Eléments
+  project_module_advanced_checklists: 'Listes de contrôle'
+  # settings_tab_label_checklist_templates: "Listes de contrôle"
+  label_checklist_plural: "Listes de contrôle"
+  label_checklist: "Checklist"
+
+
+  error_question_not_assignable: 'auteur "%{name}" ne peut pas être affecté à cette tâche'
+  permission_manage_global_checklist_templates: 'Gérer les modèles de liste de contrôle communs'
+  permission_manage_project_checklist_templates: 'Gestion des modèles de liste de contrôle de projet'
+  permission_manage_global_assigned_checklist_templates: 'Gestion des modèles de liste de contrôle communs type de "visa"'
+  permission_manage_project_assigned_checklist_templates: 'Gestion des modèles de liste de contrôle "visa" du projet'
+  permission_manage_any_checklist_assigned: 'Gestion de toutes les listes de contrôle type "visa"'
+  error_no_privileges: "Pas la permission"
+
+# for show in system history
+  journal_block_deleted: 'Verrouiller'
+  journal_block_added: 'Verrouillage est réglé'
+
+  # for show in checklist history
+  history_checklist_item_add_attach: 'fichier ajouté <strong>"%{value}"</strong> à la description <strong>"%{descr}"</strong>'
+  history_checklist_item_create: 'a créé <strong>"%{value}"</strong> et nommé pour <strong>"%{assigned_to}"</strong>'
+  history_checklist_item_done: 'a noté <s><b>terminé</b></s>'
+  history_checklist_item_undone: 'a noté <b>non terminé</b>'
+  history_checklist_item_answer: 'A répondu %{value}'
+  history_checklist_item_answer_created: 'A répondu <strong>"%{value}"</strong> sur <strong>"%{item}"</strong>'
+  history_checklist_item_answer_content: 'La réponse a changé <strong>"%{value}"</strong> sur <strong>"%{item}"</strong>'
+  history_checklist_item_answer_deleted: 'Réponse supprimée <strong>"%{value}"</strong> sur <strong>"%{item}"</strong>'
+
+
+  history_attach_renamed: 'renommé la pièce jointe <strong>"%{value}"</strong> avec <strong>"%{old_value}"</strong>'
+  history_attach_description_changed: 'description modifiée en <strong>"%{value}"</strong> avec <strong>"%{old_value}"</strong>'
+  history_attach_delete: 'supprimée la pièce jointe <strong>"%{old_value}"</strong>'

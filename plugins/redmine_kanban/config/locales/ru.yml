@@ -1,0 +1,82 @@
+# Russian strings go here for Rails i18n
+ru:
+  # common
+  project_module_kanban: 'Канбан'
+
+  # labels
+  label_kanban: 'Канбан'
+  label_issue_block_history: 'История блокировок'
+  label_total_block_duration: 'Общая длительность блокировок'
+  label_swimlanes: 'Плавательные дорожки'
+  label_my_kanban_queries: 'Мои доски'
+  label_kanban_query_plural: 'Общие доски'
+  label_show_in_top_menu: 'Показывать в верхнем меню'
+  label_show_in_app_menu: 'Показывать в меню приложения'
+  label_table_view: 'Табличный вид'
+  label_allow_add_issues: 'Разрешить добавлять задачи'
+  label_disable_add_issues: 'Запретить добавлять задачи'
+  label_fullscreen: 'Полный экран'
+
+  label_favorite_kanban_queries: 'Избранные доски'
+  label_sort_order: 'Очерёдность'
+
+  # fields
+  field_block_reason: 'Блокировка'
+  field_blocked_at: "Дата блокировки"
+  field_remove_block: 'Снять блокировку'
+  field_start: 'Начало'
+  field_finish: 'Окончание'
+  field_duration: 'Длительность'
+  field_finish_date: 'Дата окончания'
+  field_sort_order: 'Очерёдность'
+
+  # buttons
+  button_favorites_add: 'Добавить в избранное'
+  button_favorites_remove: 'Удалить из избранного'
+  button_select_boards: 'Выбрать доску'
+  button_hide_boards: 'Скрыть доски'
+  button_board_options: 'Настройки доски'
+  button_hide_options: 'Скрыть настройки'
+
+  permission_view_kanban: 'Просмотр'
+  permission_save_queries_kanban: 'Редактирование досок'
+  permission_edit_sort_order: 'Сортировка задач на доске'
+  permission_manage_public_queries_kanban: 'Редактирование публичных досок'
+
+  # for show in system history
+  journal_block_deleted: 'Блокировка снята'
+  journal_block_added: 'Установлена блокировка'
+
+  # frontend
+  info_my_tasks_button: 'Задачи назначенные на меня или группы в которые я вхожу'
+  info_locked_button: 'Задачи с блокировкой'
+
+  errors.defaultError: 'Что-то пошло не так! Обновите страницу'
+  errors.statusChangeError: 'Ошибка при смене статуса'
+  errors_error: 'Ошибка'
+
+  errors.statusOrderError: 'Ошибка при смене сортировки'
+
+  success: 'Успешно'
+  withoutPerformer: 'Без исполнителя'
+  answer_from: 'Ответил(а)'
+
+  # kanban issue size
+  label_issue_size: 'Размер задачи'
+  label_use_issue_sizes: 'Использовать размер задачи'
+  title_issue_size_create: 'Новый размер задачи'
+  title_issue_size_edit: 'Размер задачи "%{name}"'
+  field_kanban_issue_size: 'Размер задачи'
+  error_denied_destroy_not_empty_size: 'Невозможно удалить размер задачи, имеющий связи с задачами'
+
+  hint_issues_count: 'Количество задач'
+  message_total_issues: 'задач {count} из {total}'
+
+  # hints
+  hint_block_reason: 'Внешняя или внутренняя причина, по которой работа над данной задачей не может быть продолжена и должна ждать, когда эта причина будет устранена'
+  hint_issue_size: 'Оценка размера задачи'
+  hint_kanban_wip_limit: Ограничение на количество задач в колонке (work-in-progress)
+
+  label_kanban_board_columns_options: Настройка колонок доски
+  hint_save_board_for_custom_columns: 'Сохраните доску, чтобы получить больше опций по настройке'
+  hint_edit_board_for_custom_columns: 'перейдите в редактирование, чтобы получить больше опций по настройке'
